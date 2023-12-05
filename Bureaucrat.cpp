@@ -1,8 +1,21 @@
 #include "Bureaucrat.hpp"
 
 BUREAUCRAT::BUREAUCRAT(void) {
+    std::cout << "Bureaucrat created using default constructor" << std::endl;
+    return;
+}
+
+BUREAUCRAT::BUREAUCRAT(std::string name, int grade) {
+    if (grade < 1)
+        throw BUREAUCRAT::GradeTooHighException();
+    else if (grade > 150)
+        throw BUREAUCRAT::GradeTooLowException();
+    else {
+        this->_name = name;
+        this->_grade = grade;
+    }
     std::cout << "Bureaucrat named " << this->_name \
-		<< " created using default constructor" << std::endl;
+		<< " constructed" << std::endl;
     return;
 }
 

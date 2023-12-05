@@ -13,9 +13,12 @@ class BUREAUCRAT {
 		~BUREAUCRAT (void);
 	
 	void setName(const std::string _name);
+	void setGrade(const int _grade);
 
 	private:
 		std::string _name;
 		int _grade;
+		GradeTooHighException();
+		GradeTooLowException();
 };
 #endif
