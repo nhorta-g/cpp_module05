@@ -1,10 +1,11 @@
 #include "Bureaucrat.hpp"
 
-try
-{
-	Bureaucrat b("Bob", 1);
+int main (void) {
+	Bureaucrat a("Nuno", 1);	//should not throw exception
+	Bureaucrat b("Nuno", 149);	//should not throw exception
+	Bureaucrat c("Nuno", 150);	//should throw exception
+	Bureaucrat d("Nuno", 151);	//should throw exception
+	Bureaucrat e("Nuno", 0);	//should throw exception
+	Bureaucrat f("Nuno", -1);	//should throw exception
+	return (0);
 }
-catch (std::exception & e)
-{
-
-} 

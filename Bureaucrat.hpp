@@ -15,18 +15,20 @@ class Bureaucrat {
 		Bureaucrat(int grade );				//user defined
 		Bureaucrat (const std::string name, int grade); //user defined
 		Bureaucrat (const Bureaucrat &src); //copy constructor
-		Bureaucrat &operator = (const Bureaucrat &src); //destructor
-		~Bureaucrat (void);
+		Bureaucrat &operator = (const Bureaucrat &src); //assignment operator
+		~Bureaucrat (void);					//destructor
 
-	//Public methods
+	//PUBLIC METHODS
 	void	incrementGrade(void);
 	void	decrementGrade(void);
 
-	//Getters
+	//GETTERS & SETTERS
 	std::string	getName(void) const;
-	int	getGrade(void) const;
+	size_t	getGrade(void) const;
+	void setName(const std::string name);
+	void setGrade(int grade);
 
-	//Exceptions
+	//EXCEPTIONS
 	class GradeTooHighException : public std::exception {
 		public:
 			const char *what() const throw();
@@ -40,6 +42,5 @@ class Bureaucrat {
 
 //Ostream overload
 
-std::ostream &operator << (std::ostream &out,
-	Bureaucrat const &bureaucrat);
+std::ostream &operator << (std::ostream &out, Bureaucrat const &a);
 #endif
