@@ -69,6 +69,29 @@ Bureaucrat::~Bureaucrat(void) {
 	return;
 }
 
+//GETTERS & SETTERS
+
+std::string Bureaucrat::getName(void) const {
+	return (this->_name);
+}
+
+size_t Bureaucrat::getGrade(void) const {
+	return (this->_grade);
+}
+
+void Bureaucrat::setName(const std::string name) {
+	this->_name = name;
+}
+
+void Bureaucrat::setGrade(int grade) {
+	if (grade < 1)
+		throw Bureaucrat::GradeTooHighException();
+	else if (grade > 150)
+		throw Bureaucrat::GradeTooLowException();
+	else
+		this->_grade = grade;
+}
+
 //PUBLIC METHODS
 void Bureaucrat::incrementGrade(void) {
 	try
@@ -108,32 +131,8 @@ const char *Bureaucrat::GradeTooLowException::what() const throw() {
 	return ("Grade too low");
 }
 
-//GETTERS & SETTERS
-
-std::string Bureaucrat::getName(void) const {
-	return (this->_name);
-}
-
-size_t Bureaucrat::getGrade(void) const {
-	return (this->_grade);
-}
-
-void Bureaucrat::setName(const std::string name) {
-	this->_name = name;
-}
-
-void Bureaucrat::setGrade(int grade) {
-	if (grade < 1)
-		throw Bureaucrat::GradeTooHighException();
-	else if (grade > 150)
-		throw Bureaucrat::GradeTooLowException();
-	else
-		this->_grade = grade;
-}
-
 //Ostream overload
 std::ostream &operator << (std::ostream &out, Bureaucrat const &a) {
-	out << a.getName() << ", bureaucrat grade " << a.getGrade() << "."
-		<< std::endl;
+	out << a.getName() << ", bureaucrat grade " << a.getGrade() << ".";
 	return (out);
 }

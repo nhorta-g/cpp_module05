@@ -18,15 +18,15 @@ class Bureaucrat {
 		Bureaucrat &operator = (const Bureaucrat &src); //assignment operator
 		~Bureaucrat (void);					//destructor
 
-	//PUBLIC METHODS
-	void	incrementGrade(void);
-	void	decrementGrade(void);
-
 	//GETTERS & SETTERS
 	std::string	getName(void) const;
 	size_t	getGrade(void) const;
 	void setName(const std::string name);
 	void setGrade(int grade);
+
+	//PUBLIC METHODS
+	void	incrementGrade(void);
+	void	decrementGrade(void);
 
 	//EXCEPTIONS
 	class GradeTooHighException : public std::exception {
@@ -40,7 +40,7 @@ class Bureaucrat {
 	};
 };
 
-//Ostream overload
+//OSTREAM OVERLOAD
 
 std::ostream &operator << (std::ostream &out, Bureaucrat const &a);
 #endif
