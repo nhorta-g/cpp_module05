@@ -6,7 +6,7 @@
 /*   By: nuno <nuno@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/29 17:01:33 by nuno              #+#    #+#             */
-/*   Updated: 2023/12/29 17:01:51 by nuno             ###   ########.fr       */
+/*   Updated: 2024/01/04 20:00:33 by nuno             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -64,11 +64,20 @@ void Bureaucrat::decrementGrade(void) {
 		throw Bureaucrat::GradeTooLowException();
 	this->_grade++;
 }
+void Bureaucrat::signForm(const Form &form) {
+	if (form.getSigned())
+		std::cout << this->getName() << " signed " << form.getName()
+			<< std::endl;
+	else {
+		std::cout << this->getName() << " couldn't sign " << form.getName()
+			<< " because ";
+		throw Bureaucrat::GradeTooLowException();
+	}
+}
 //EXCEPTIONS
 const char *Bureaucrat::GradeTooHighException::what() const throw() {
 	return ("Grade too high");
 }
-
 const char *Bureaucrat::GradeTooLowException::what() const throw() {
 	return ("Grade too low");
 }

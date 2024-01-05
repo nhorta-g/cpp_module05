@@ -6,7 +6,7 @@
 /*   By: nuno <nuno@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/29 17:03:05 by nuno              #+#    #+#             */
-/*   Updated: 2024/01/02 13:11:05 by nuno             ###   ########.fr       */
+/*   Updated: 2024/01/04 20:17:11 by nuno             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,9 +36,10 @@ class Form {
 	bool	getSigned(void) const;
 	int		getGradeToSign(void) const;
 	int		getGradeToExecute(void) const;
+	//SETTERS
+	void	setSigned(bool signedStatus);
 	//PUBLIC METHODS
 	void	beSigned(const Bureaucrat &b);
-	void	signForm(bool signedStatus);
 	//EXCEPTIONS
 	class GradeTooHighException : public std::exception {
 		public:
@@ -50,4 +51,6 @@ class Form {
 	};
 };
 
+	//OSTREAM OVERLOAD
+	std::ostream &operator<<(std::ostream &out, const Form &form);
 #endif

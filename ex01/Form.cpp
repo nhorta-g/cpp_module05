@@ -6,7 +6,7 @@
 /*   By: nuno <nuno@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/02 12:25:56 by nuno              #+#    #+#             */
-/*   Updated: 2024/01/02 13:38:43 by nuno             ###   ########.fr       */
+/*   Updated: 2024/01/04 20:16:07 by nuno             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -60,4 +60,20 @@ int Form::getGradeToSign(void) const {
 }
 int Form::getGradeToExecute(void) const {
 	return (this->_gradeToExecute);
+}
+void Form::setSigned(bool signedStatus) {
+	this->_signed = signedStatus;
+}
+//PUBLIC METHODS
+void Form::beSigned(const Bureaucrat &bureacrat) {
+	if (bureacrat.getGrade() <= this->getGradeToSign())
+		this->setSigned(true);
+	else
+		throw Form::GradeTooLowException();
+}
+//Ostream overload
+std::ostream &operator << (std::ostream &out, const Form &form) {
+	out << form.getName() << ", status " << form.getSigned() << ", require grade: "
+		<< form.getGradeToSign() << " and to execute " << form.getGradeToExecute() << std::endl;
+	return (out);
 }
