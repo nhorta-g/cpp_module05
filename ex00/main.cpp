@@ -6,7 +6,7 @@
 /*   By: nuno <nuno@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/28 20:00:14 by nuno              #+#    #+#             */
-/*   Updated: 2023/12/29 16:40:40 by nuno             ###   ########.fr       */
+/*   Updated: 2024/01/09 18:18:58 by nuno             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -73,7 +73,8 @@ int main (void) {
 		std::cout << Eu;
 		for (int i = 0; i < 3; i++) {
 			Eu.incrementGrade();
-			std::cout << Eu << "[" << i << "] ";		}
+			std::cout << Eu << "[" << i << "] ";
+		}
 		Eu.incrementGrade();
 	}
 	catch (std::exception &e) {

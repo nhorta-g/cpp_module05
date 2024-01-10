@@ -6,13 +6,43 @@
 /*   By: nuno <nuno@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/29 17:02:59 by nuno              #+#    #+#             */
-/*   Updated: 2024/01/04 20:12:40 by nuno             ###   ########.fr       */
+/*   Updated: 2024/01/09 19:01:48 by nuno             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "Form.hpp"
 
 int main(void) {
+
+	std::cout << "\033[1;31m" << "TESTING BUREAUCRAT WITH 2 PARAMS" << "\033[0m" << std::endl;
+	std::cout << "\033[1;31m" << "--------------------------------" << "\033[0m" << std::endl;
+	try { Bureaucrat b("John, ")}
+
+
+	std::cout << "\033[1;31m" << "TESTING BUREAUCRAT INCREMENT AND DECREMENT" << "\033[0m" << std::endl;
+	std::cout << "\033[1;31m" << "-----------------------------------------" << "\033[0m" << std::endl;
+
+
+	std::cout << "\033[1;31m" << "TESTING GENERAL BEHAVIER" << "\033[0m" << std::endl;
+		std::cout << "\033[1;31m" << "-----------------------------------------" << "\033[0m" << std::endl;
+
+	try
+	{
+		Bureaucrat Eu("Eu", 4);
+		std::cout << Eu;
+		Eu.incrementGrade();
+		std::cout << Eu;
+		for (int i = 0; i < 3; i++) {
+			Eu.incrementGrade();
+			std::cout << Eu << "[" << i << "] ";		}
+		Eu.incrementGrade();
+	}
+	catch (std::exception &e) {
+		std::cout << e.what() << std::endl;
+	}
+	std::cout << std::endl;
+	std::cout << "\033[1;31m" << "CALLING DESTRUCTORS" << "\033[0m" << std::endl;
+
    std::cout << "\033[0;36m>>>>> Testing Bureaucrats <<<<<\033[0m" << std::endl;
     std::cout << "\033[0;32m>>> Testing initialization <<<\033[0m" << std::endl;
     try { Bureaucrat b("John", 4); std::cout << b << std::endl; }
