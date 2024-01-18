@@ -6,131 +6,72 @@
 /*   By: nuno <nuno@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/29 17:02:59 by nuno              #+#    #+#             */
-/*   Updated: 2024/01/16 18:03:00 by nuno             ###   ########.fr       */
+/*   Updated: 2024/01/17 17:26:41 by nuno             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "Form.hpp"
+#include "AForm.hpp"
+#include "Bureaucrat.hpp"
+#include "ShrubberyCreationForm.hpp"
+#include "RobotomyRequestForm.hpp"
+#include "PresidentialPardonForm.hpp"
 
-int main(void) {
-
-	std::cout << "\033[1;31m" << "CREATING BUROCRATS" << "\033[0m" << std::endl;
-	std::cout << "\033[1;31m" << "------------------" << "\033[0m" << std::endl;
-
-	Bureaucrat a("Drunk notary", 1);
-	Bureaucrat b("Energized accountant", 150);
-	std::cout << b << std::endl;
-
-	std::cout << std::endl;
-	std::cout << "\033[1;31m" << "TESTING COPY CONSTRUCTOR" << "\033[0m" << std::endl;
-	std::cout << "\033[1;31m" << "------------------------" << "\033[0m" << std::endl;
-
-	Bureaucrat c(a);
-	std::cout << c << std::endl;
-	c.decrementGrade();
-	std::cout << a << " ; " << c << std::endl;
-
-	std::cout << std::endl;
-	Bureaucrat d(b);
-	std::cout << d << std::endl;
-	d.incrementGrade();
-	std::cout << b << "; " << d << std::endl;
-
-	std::cout << std::endl;
-	std::cout << "\033[1;31m" << "CREATING FORMS" << "\033[0m" << std::endl;
-	std::cout << "\033[1;31m" << "--------------" << "\033[0m" << std::endl;
-
+int	main(void) {
 	try {
-		Form g("Boring form", 4, 6);
-		std::cout << g << std::endl << std::endl;
-	}
-	catch (std::exception& e) {
-		std::cerr << e.what() << std::endl << std::endl;
-	}
-	try {
-		Form g("Extensive form", 150, 5);
-		std::cout << g << std::endl << std::endl;
-	}
-	catch (std::exception& e) {
-		std::cerr << e.what() << std::endl << std::endl;
-	}
-	try {
-		Form g("Complicated form", 0, 4);
-		std::cout << g << std::endl << std::endl;
-	}
-	catch (std::exception& e) {
-		std::cerr << e.what() << std::endl << std::endl;
-	}
-	try {
-		Form g("Complex form", 1, 3);
-		std::cout << g << std::endl << std::endl;
-	}
-	catch (std::exception& e) {
-		std::cerr << e.what() << std::endl << std::endl;
-	}
-	try {
-		Form g("Imposible to know how to fill form", 151, 2);
-		std::cout << g << std::endl << std::endl;
-	}
-	catch (std::exception& e) {
-		std::cerr << e.what() << std::endl << std::endl;
-	}
-	try {
-		Form g("Another form", -1, 1);
-		std::cout << g << std::endl << std::endl;
-	}
-	catch (std::exception& e) {
-		std::cerr << e.what() << std::endl << std::endl;
-	}
-	try {
-		Form g("And another form", 1, -5);
-		std::cout << g << std::endl << std::endl;
-	}
-	catch (std::exception& e) {
-		std::cerr << e.what() << std::endl << std::endl;
-	}
+		std::cout << "\033[1;31m" << "SHRUBBERY CREATION TEST" << "\033[0m" << std::endl;
+		std::cout << "\033[1;31m" << "-----------------------" << "\033[0m" << std::endl;
 
-	std::cout << std::endl;
-	std::cout << "\033[1;31m" << "TESTING SIGNING" << "\033[0m" << std::endl;
-	std::cout << "\033[1;31m" << "--------------" << "\033[0m" << std::endl;
+		Bureaucrat b3("lili", 140);
 
-	Bureaucrat johnny("Johnny", 75);
-	try {
-		Form f("test1", 80, 20);
-		johnny.signForm(f);
+		std::cout << b3 << std::endl;
+
+		ShrubberyCreationForm susu("sequoia");
+
+		b3.signForm(susu);
+
+		std::cout << susu << std::endl;
+
+		b3.executeForm(susu);
+
 		std::cout << std::endl;
-	}
-	catch (std::exception& e) {
-		std::cerr << e.what() << std::endl << std::endl;
-	}
-	try {
-		Form f("test2", 75, 20);
-		johnny.signForm(f);
+		std::cout << "\033[1;31m" << "ROBOTOMYREQUESTFORM" << "\033[0m" << std::endl;
+		std::cout << "\033[1;31m" << "-------------------" << "\033[0m" << std::endl;
+
+		Bureaucrat b2("toto", 40);
+
+		std::cout << b2 << std::endl;
+
+		RobotomyRequestForm robot("Marvin");
+
+		b2.signForm(robot);
+
+		std::cout << robot << std::endl;
+
+		b2.executeForm(robot);
+
 		std::cout << std::endl;
-	}
-	catch (std::exception& e) {
-		std::cerr << e.what() << std::endl << std::endl;
-	}
-	try {
-		Form f("test3", 54, 20);
-		johnny.signForm(f);
+		std::cout << "\033[1;31m" << "PRESIDENTIAL PARDON FORM TEST" << "\033[0m" << std::endl;
+		std::cout << "\033[1;31m" << "-----------------------------" << "\033[0m" << std::endl;
+
+		Bureaucrat b1("bubu", 30);
+
+		std::cout << b1 << std::endl;
+
+		PresidentialPardonForm pdForm("Ford");
+
+		b1.signForm(pdForm);
+
+		std::cout << pdForm << std::endl;
+
+		b1.executeForm(pdForm);
+
 		std::cout << std::endl;
-	}
-	catch (std::exception& e) {
-		std::cerr << e.what() << std::endl << std::endl;
-	}
-	try {
-		Form f("test4", 20, 20);
-		johnny.signForm(f);
-		std::cout << std::endl;
-	}
-	catch (std::exception& e) {
-		std::cerr << e.what() << std::endl << std::endl;
+		std::cout << "\033[1;31m" << "CALLING DESTRUCTORS" << "\033[0m" << std::endl;
+		std::cout << "\033[1;31m" << "-------------------" << "\033[0m" << std::endl;
+	} catch (std::exception &e) {
+		std::cerr << e.what() << std::endl;
 	}
 
-	std::cout << std::endl;
-	std::cout << "\033[1;31m" << "CALLING DESTRUCTORS" << "\033[0m" << std::endl;
-	std::cout << "\033[1;31m" << "-------------------" << "\033[0m" << std::endl;
-	return(0);
+
+	return 0;
 }
-

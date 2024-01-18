@@ -1,25 +1,23 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   Form.hpp                                           :+:      :+:    :+:   */
+/*   AForm.hpp                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: nuno <nuno@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/29 17:03:05 by nuno              #+#    #+#             */
-/*   Updated: 2024/01/16 17:56:06 by nuno             ###   ########.fr       */
+/*   Updated: 2024/01/17 19:23:09 by nuno             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef FORM_HPP
 # define FORM_HPP
 
-# include <string>
-# include <iostream>
 # include "Bureaucrat.hpp"
 
 class Bureaucrat;
 
-class Form {
+class AForm {
 
 	private:
 		std::string _name;
@@ -28,11 +26,11 @@ class Form {
 		int _gradeToExecute;
 
 	public:
-		Form (void);								//default
-		Form (const std::string name, int gradeToSign, int gradeToExecute); //user defined
-		Form (const Form &src);						//copy constructor
-		Form &operator = (const Form &src);			//assignment operator
-		~Form (void);								//destructor
+		AForm (void);								//default
+		AForm (const std::string name, int gradeToSign, int gradeToExecute); //user defined
+		AForm (const AForm &src);						//copy constructor
+		AForm &operator = (const AForm &src);			//assignment operator
+		~AForm (void);								//destructor
 	//GETTERS
 	std::string	getName(void) const;
 	bool	getSigned(void) const;
@@ -42,6 +40,8 @@ class Form {
 	void	setSigned(bool signedStatus);
 	//PUBLIC METHODS
 	bool	beSigned(const Bureaucrat &b);
+	bool	checkRequirements( int grade ) const;
+	virtual void execute(Bureaucrat const & executor) const = 0;
 	//EXCEPTIONS
 	class GradeTooHighException : public std::exception {
 		public:
@@ -51,8 +51,11 @@ class Form {
 		public:
 			const char *what() const throw();
 	};
+	class NotSignedExeption : public std::exception {
+		public:
+			const char *what() const throw();
+	};
 };
-
 	//OSTREAM OVERLOAD
-	std::ostream &operator<<(std::ostream &out, const Form &form);
+	std::ostream &operator<<(std::ostream &out, const AForm &form);
 #endif

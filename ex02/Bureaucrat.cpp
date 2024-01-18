@@ -6,7 +6,7 @@
 /*   By: nuno <nuno@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/29 17:01:33 by nuno              #+#    #+#             */
-/*   Updated: 2024/01/16 17:56:28 by nuno             ###   ########.fr       */
+/*   Updated: 2024/01/17 15:12:17 by nuno             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,6 +25,7 @@ Bureaucrat::Bureaucrat(const std::string name, int grade): _name(name), _grade(g
 		throw Bureaucrat::GradeTooLowException();
 	std::cout << "Bureaucrat created using user defined constructor with name "
 		<< this->getName() << " and with grade " << this->getGrade() <<
+
 		" as parameters." << std::endl;
 }
 //copy constructor
@@ -64,7 +65,7 @@ void Bureaucrat::decrementGrade(void) {
 		throw Bureaucrat::GradeTooLowException();
 	this->_grade++;
 }
-void Bureaucrat::signForm(Form &form) {
+void Bureaucrat::signForm(AForm &form) {
 	if (form.beSigned(*this))
 		std::cout << this->getName() << " signed " << form.getName()
 			<< std::endl;
@@ -72,6 +73,15 @@ void Bureaucrat::signForm(Form &form) {
 		std::cout << this->getName() << " couldn't sign " << form.getName()
 			<< " because ";
 		throw Bureaucrat::GradeTooLowException();
+	}
+}
+void Bureaucrat::executeForm(AForm const &form) {
+	try {
+		form.execute(*this);
+		std::cout << this->_name << " executed " << form.getName() << std::endl;
+	}
+	catch (std::exception &e) {
+		std::cerr << e.what() << std::endl << std::endl;
 	}
 }
 //EXCEPTIONS
