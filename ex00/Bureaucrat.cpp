@@ -6,7 +6,7 @@
 /*   By: nuno <nuno@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/28 20:00:05 by nuno              #+#    #+#             */
-/*   Updated: 2023/12/29 17:01:54 by nuno             ###   ########.fr       */
+/*   Updated: 2024/01/17 16:48:39 by nuno             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,9 +20,9 @@ Bureaucrat::Bureaucrat(void) : _name("default"), _grade(150) {
 //user defined constructor
 Bureaucrat::Bureaucrat(const std::string name, int grade): _name(name), _grade(grade) {
 	if (this->_grade < 1)
-		throw Bureaucrat::GradeTooHighException();
+		throw GradeTooHighException();
 	else if (this->_grade > 150)
-		throw Bureaucrat::GradeTooLowException();
+		throw GradeTooLowException();
 	std::cout << "Bureaucrat created using user defined constructor with name "
 		<< this->getName() << " and with grade " << this->getGrade() <<
 		" as parameters." << std::endl;
@@ -56,12 +56,12 @@ size_t Bureaucrat::getGrade(void) const {
 //PUBLIC METHODS
 void Bureaucrat::incrementGrade(void) {
 	if (this->_grade - 1 < 1)
-		throw Bureaucrat::GradeTooHighException();
+		throw GradeTooHighException();
 	this->_grade--;
 }
 void Bureaucrat::decrementGrade(void) {
 	if (this->_grade + 1 > 150)
-		throw Bureaucrat::GradeTooLowException();
+		throw GradeTooLowException();
 	this->_grade++;
 }
 //EXCEPTIONS

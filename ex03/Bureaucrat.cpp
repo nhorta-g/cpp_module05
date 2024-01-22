@@ -6,7 +6,7 @@
 /*   By: nuno <nuno@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/29 17:01:33 by nuno              #+#    #+#             */
-/*   Updated: 2024/01/17 16:48:01 by nuno             ###   ########.fr       */
+/*   Updated: 2024/01/17 15:12:17 by nuno             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,11 +20,12 @@ Bureaucrat::Bureaucrat(void) : _name("default"), _grade(150) {
 //user defined constructor
 Bureaucrat::Bureaucrat(const std::string name, int grade): _name(name), _grade(grade) {
 	if (this->_grade < 1)
-		throw GradeTooHighException();
+		throw Bureaucrat::GradeTooHighException();
 	else if (this->_grade > 150)
-		throw GradeTooLowException();
+		throw Bureaucrat::GradeTooLowException();
 	std::cout << "Bureaucrat created using user defined constructor with name "
 		<< this->getName() << " and with grade " << this->getGrade() <<
+
 		" as parameters." << std::endl;
 }
 //copy constructor
@@ -56,22 +57,31 @@ int Bureaucrat::getGrade(void) const {
 //PUBLIC METHODS
 void Bureaucrat::incrementGrade(void) {
 	if (this->_grade - 1 < 1)
-		throw GradeTooHighException();
+		throw Bureaucrat::GradeTooHighException();
 	this->_grade--;
 }
 void Bureaucrat::decrementGrade(void) {
 	if (this->_grade + 1 > 150)
-		throw GradeTooLowException();
+		throw Bureaucrat::GradeTooLowException();
 	this->_grade++;
 }
-void Bureaucrat::signForm(Form &form) {
+void Bureaucrat::signForm(AForm &form) {
 	if (form.beSigned(*this))
 		std::cout << this->getName() << " signed " << form.getName()
 			<< std::endl;
 	else {
 		std::cout << this->getName() << " couldn't sign " << form.getName()
 			<< " because ";
-		throw GradeTooLowException();
+		throw Bureaucrat::GradeTooLowException();
+	}
+}
+void Bureaucrat::executeForm(AForm const &form) {
+	try {
+		form.execute(*this);
+		std::cout << this->_name << " executed " << form.getName() << std::endl;
+	}
+	catch (std::exception &e) {
+		std::cerr << e.what() << std::endl << std::endl;
 	}
 }
 //EXCEPTIONS
